@@ -15,7 +15,13 @@ public class RayManager : MonoBehaviour {
 		if (Physics.Raycast (ray, out hit)) {
 			reticle.transform.position = hit.point;
 
-			Destroy(hit.collider.gameObject);
+			print ("looking for enemies...");
+
+			if (hit.collider.tag == "Monster") {
+				Destroy(hit.collider.gameObject);
+			}
+
+
 		}
 	}
 }
