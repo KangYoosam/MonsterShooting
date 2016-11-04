@@ -9,6 +9,7 @@ public class RayManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 		Ray ray = new Ray (dive_camera.transform.position, dive_camera.transform.forward);
 		RaycastHit hit;
 
