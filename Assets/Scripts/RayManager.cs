@@ -9,12 +9,13 @@ public class RayManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
 		Ray ray = new Ray (dive_camera.transform.position, dive_camera.transform.forward);
 		RaycastHit hit;
 
 		if (Physics.Raycast (ray, out hit)) {
 			reticle.transform.position = hit.point;
+
+			Destroy(hit.collider.gameObject);
 		}
 	}
 }
