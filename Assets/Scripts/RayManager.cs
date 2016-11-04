@@ -6,6 +6,7 @@ public class RayManager : MonoBehaviour {
 
 	public GameObject dive_camera;
 	public GameObject reticle;
+	private float score;
 
 	// Update is called once per frame
 	void Update () {
@@ -15,13 +16,13 @@ public class RayManager : MonoBehaviour {
 		if (Physics.Raycast (ray, out hit)) {
 			reticle.transform.position = hit.point;
 
-			print ("looking for enemies...");
-
 			if (hit.collider.tag == "Monster") {
-				Destroy(hit.collider.gameObject);
+				score += Time.deltaTime;
+
+				if(score >= 2.2){
+					Destroy(hit.collider.gameObject);
+				}
 			}
-
-
 		}
 	}
 }
