@@ -6,7 +6,14 @@ public class RayManager : MonoBehaviour {
 
 	public GameObject dive_camera;
 	public GameObject reticle;
-	private float score;
+	public ShotGunScript shotGunScript;
+
+	private float gazedTime;
+
+	void Start()
+	{
+		
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -17,10 +24,17 @@ public class RayManager : MonoBehaviour {
 			reticle.transform.position = hit.point;
 
 			if (hit.collider.tag == "Monster") {
-				score += Time.deltaTime;
+				gazedTime += Time.deltaTime;
 
-				if(score >= 2.2){
+				if(gazedTime >= 2.2){
 					Destroy(hit.collider.gameObject);
+
+//					ShotGunScript shotGun = GetComponent<ShotGunScript> ();
+					shotGunScript.Fire ();
+
+//					ShotGunScript shotGun = GetComponent<Animator> ();
+//					shotGun.
+//					animator.SetTrigger ("Gazed");
 				}
 			}
 		}

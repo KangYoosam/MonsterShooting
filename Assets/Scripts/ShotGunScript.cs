@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShotGun : MonoBehaviour {
+public class ShotGunScript : MonoBehaviour {
 
 	Animator animator;
 
@@ -12,9 +12,10 @@ public class ShotGun : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			print ("fire!");
-			animator.SetTrigger ("Gazed");
-		}
+		
+	}
+
+	public void Fire() {
+		animator.SetTrigger ("Gazed");
 	}
 }
