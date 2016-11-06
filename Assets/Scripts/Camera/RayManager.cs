@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Linq;
 
 public class RayManager : MonoBehaviour {
 
@@ -23,7 +24,9 @@ public class RayManager : MonoBehaviour {
 
 	void Start () {
 		GameObject positionsWrapper = GameObject.Find ("Cave/EmergePositions");
-		positions = positionsWrapper.transform.GetComponentsInChildren<Transform> ();
+		positions = positionsWrapper.transform.GetComponentsInChildren<Transform> ()
+			.Where( c => positionsWrapper.gameObject != c.gameObject )
+			.ToArray();
 	}
 
 	// Update is called once per frame
@@ -47,7 +50,7 @@ public class RayManager : MonoBehaviour {
 
 		// モンスターを生成
 		monsterInterval += Time.deltaTime;
-		if (monsterInterval >= 1f) {
+		if (monsterInterval >= 0.1f) {
 			GenerateMonster ();
 		}
 	}
