@@ -4,20 +4,23 @@ using UnityEngine.UI;
 
 public class RayManager : MonoBehaviour {
 
-	public GameObject dive_camera;
+	// Player
+	public GameObject diveCamera;
 	public GameObject reticle;
+
+	// Gun
 	public ShotGunScript shotGunScript;
 
-	private float gazedTime;
+	// Monster
+	public GameObject monster_daemon;
+	float monsterInterval;
 
-	void Start()
-	{
-		
-	}
+	// property
+	private float gazedTime;
 
 	// Update is called once per frame
 	void Update () {
-		Ray ray = new Ray (dive_camera.transform.position, dive_camera.transform.forward);
+		Ray ray = new Ray (diveCamera.transform.position, diveCamera.transform.forward);
 		RaycastHit hit;
 
 		if (Physics.Raycast (ray, out hit)) {
@@ -26,17 +29,33 @@ public class RayManager : MonoBehaviour {
 			if (hit.collider.tag == "Monster") {
 				gazedTime += Time.deltaTime;
 
+				// 発射
 				if(gazedTime >= 2.2){
 					Destroy(hit.collider.gameObject);
-
-//					ShotGunScript shotGun = GetComponent<ShotGunScript> ();
 					shotGunScript.Fire ();
-
-//					ShotGunScript shotGun = GetComponent<Animator> ();
-//					shotGun.
-//					animator.SetTrigger ("Gazed");
 				}
 			}
 		}
+
+		// モンスターを生成
+		monsterInterval += Time.deltaTime;
+		if (monsterInterval >= 0.1f) {
+			GenerateMonster ();
+		}
+	}
+
+	// モンスターを生成
+	void GenerateMonster() {
+		monsterInterval = 0.0f;
+
+		Quaternion q = Quaternion.Euler(0, 0, 0);
+
+		Instantiate (monster_daemon,
+			new Vector3(Random.Range(-25, -21),
+				transform.position.y,
+				transform.position.z
+			),
+			q
+		);
 	}
 }
