@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NavMeshManager : MonoBehaviour {
+public class MoveToCamera : MonoBehaviour {
 
 	public GameObject target;
 
