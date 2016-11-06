@@ -72,6 +72,6 @@ public class RayManager : MonoBehaviour {
 
 		// MoveToCameraScriptのtargetプロパティにmonsterをアタッチ。
 		MoveToCamera moveToCameraScript = monster.GetComponent<MoveToCamera> ();
-		moveToCameraScript.target = monster;
+		moveToCameraScript.target = diveCamera;
 	}
 }

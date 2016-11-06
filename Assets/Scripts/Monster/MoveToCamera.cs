@@ -11,7 +11,7 @@ public class MoveToCamera : MonoBehaviour {
 	void Start () {
 		NavMeshAgent agent = GetComponent<NavMeshAgent> ();
 		agent.speed = 1;
-		agent.destination = target.transform.position;
+		agent.SetDestination (target.transform.position);
 	}
 	
 	// Update is called once per frame
