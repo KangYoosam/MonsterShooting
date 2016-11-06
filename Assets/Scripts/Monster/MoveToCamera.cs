@@ -5,6 +5,8 @@ public class MoveToCamera : MonoBehaviour {
 
 	public GameObject target;
 
+	bool isActive = false;
+
 	// Use this for initialization
 	void Start () {
 		NavMeshAgent agent = GetComponent<NavMeshAgent> ();
@@ -14,6 +16,6 @@ public class MoveToCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		//
 	}
 }

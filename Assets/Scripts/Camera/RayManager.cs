@@ -18,6 +18,14 @@ public class RayManager : MonoBehaviour {
 	// property
 	private float gazedTime;
 
+
+	Transform[] positions;
+
+	void Start () {
+		GameObject positionsWrapper = GameObject.Find ("Cave/EmergePositions");
+		positions = positionsWrapper.transform.GetComponentsInChildren<Transform> ();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		Ray ray = new Ray (diveCamera.transform.position, diveCamera.transform.forward);
@@ -39,7 +47,7 @@ public class RayManager : MonoBehaviour {
 
 		// モンスターを生成
 		monsterInterval += Time.deltaTime;
-		if (monsterInterval >= 0.1f) {
+		if (monsterInterval >= 1f) {
 			GenerateMonster ();
 		}
 	}
@@ -50,12 +58,15 @@ public class RayManager : MonoBehaviour {
 
 		Quaternion q = Quaternion.Euler(0, 0, 0);
 
-		Instantiate (monster_daemon,
-			new Vector3(Random.Range(-25, -21),
-				transform.position.y,
-				transform.position.z
-			),
+		int number = Random.Range (0, positions.Length);
+
+		GameObject monster = Instantiate (monster_daemon,
+			positions[number].transform.position,
 			q
-		);
+		) as GameObject;
+
+		MoveToCamera moveToCameraScript = monster.GetComponent<MoveToCamera> ();
+
+		moveToCameraScript.target = monster;
 	}
 }
