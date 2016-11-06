@@ -15,7 +15,11 @@ public class ShotGunScript : MonoBehaviour {
 		
 	}
 
-	public void Fire() {
+	public void Fire(GameObject monster) {
 		animator.SetTrigger ("Gazed");
+		Destroy(monster);
+
+		ScoreController scoreController = GameObject.Find ("Gun").GetComponent<ScoreController> ();
+		scoreController.ScorePlus (monster.GetComponent<MoveToCamera> ().score);
 	}
 }

@@ -42,9 +42,8 @@ public class RayManager : MonoBehaviour {
 				gazedTime += Time.deltaTime;
 
 				// 発射
-				if(gazedTime >= 2.2){
-					Destroy(hit.collider.gameObject);
-					shotGunScript.Fire ();
+				if (gazedTime >= 2.2) {
+					shotGunScript.Fire (hit.collider.gameObject);
 				}
 			}
 		}
