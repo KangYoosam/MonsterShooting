@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveToCamera : MonoBehaviour {
+public class MonsterScript : MonoBehaviour {
 
 	public GameObject target;
 
