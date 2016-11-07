@@ -22,4 +22,9 @@ public class ShotGunScript : MonoBehaviour {
 		ScoreController scoreController = GameObject.Find ("Gun").GetComponent<ScoreController> ();
 		scoreController.ScorePlus (monster.GetComponent<MonsterScript> ().score);
 	}
+
+	public void GameOver() {
+		
+		Destroy (this.gameObject);
+	}
 }
