@@ -7,6 +7,8 @@ public class MonsterScript : MonoBehaviour {
 
 	public int score;
 
+	Animator animator;
+
 	NavMeshAgent agent;
 
 	// Use this for initialization
@@ -14,11 +16,15 @@ public class MonsterScript : MonoBehaviour {
 		agent = GetComponent<NavMeshAgent> ();
 		agent.speed = 1;
 		agent.SetDestination (target.transform.position);
+
+		animator = GetComponent<Animator> ();
 	}
 
 	void OnTriggerEnter (Collider coll) {
 		if (coll.tag == "Player") {
 			agent.Stop ();
+
+			animator.Play ("attack");
 		}
 	}
 }
