@@ -14,7 +14,7 @@ public class RayManager : MonoBehaviour {
 	public ShotGunScript shotGunScript;
 
 	// Monster
-	public GameObject monster_daemon;
+	public GameObject Daemon;
 	float monsterInterval;
 
 	// property
@@ -72,7 +72,7 @@ public class RayManager : MonoBehaviour {
 		Quaternion q = Quaternion.Euler(0, 0, 0);
 		int number = Random.Range (0, positions.Length);
 
-		GameObject monster = Instantiate (monster_daemon,
+		GameObject monster = Instantiate (Daemon,
 			positions[number].transform.position,
 			q
 		) as GameObject;
