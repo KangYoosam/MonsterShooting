@@ -27,18 +27,11 @@ public class MonsterScript : MonoBehaviour {
 		if (coll.tag == "Player") {
 			agent.Stop ();
 			animator.Play ("attack");
-
-			for (int i = 0; i < Time.deltaTime; i++) {
-				// 現在動いているAnimatorがattackだったら
-				if (animator.GetCurrentAnimatorStateInfo (0).IsName ("attackEnd")) {
-					gun = GameObject.Find ("Gun");
-					Destroy (gun);
-				};	
-			}
 		}
 	}
 
 	void PlayerDamaged () {
-		print ("kang");
+		gun = GameObject.Find ("Gun");
+		Destroy (gun);
 	}
 }
