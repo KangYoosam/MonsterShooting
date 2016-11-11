@@ -8,6 +8,7 @@ public class RayManager : MonoBehaviour {
 	// Player
 	public GameObject diveCamera;
 	public GameObject reticle;
+	public GameObject blood;
 
 	// Gun
 	public ShotGunScript shotGunScript;
@@ -18,6 +19,7 @@ public class RayManager : MonoBehaviour {
 
 	// property
 	private float gazedTime;
+	private bool isDead = false;
 
 	Transform[] positions;
 
@@ -49,6 +51,11 @@ public class RayManager : MonoBehaviour {
 			} else {
 				gazedTime = 0;
 			}
+
+			// 血飛沫を表示
+			if (isDead) {
+				blood.SetActive (true);
+			}
 		}
 
 		// モンスターを生成
@@ -75,5 +82,9 @@ public class RayManager : MonoBehaviour {
 		// MoveToCameraScriptのtargetプロパティにmonsterをアタッチ。
 		MonsterScript monsterScript = monster.GetComponent<MonsterScript> ();
 		monsterScript.target = diveCamera;
+	}
+
+	public void PlayerDead () {
+		isDead = true;
 	}
 }

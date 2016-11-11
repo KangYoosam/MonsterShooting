@@ -33,5 +33,7 @@ public class MonsterScript : MonoBehaviour {
 	void PlayerDamaged () {
 		gun = GameObject.Find ("Gun");
 		Destroy (gun);
+		RayManager rayManager = GameObject.Find ("RayManager").GetComponent<RayManager> ();
+		rayManager.PlayerDead ();
 	}
 }
