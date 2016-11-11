@@ -17,7 +17,7 @@ public class MonsterScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
-		agent.speed = 3;
+		agent.speed = 1;
 		agent.SetDestination (target.transform.position);
 
 		animator = GetComponent<Animator> ();
