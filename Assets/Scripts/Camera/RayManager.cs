@@ -27,6 +27,8 @@ public class RayManager : MonoBehaviour {
 	private bool isDead = false;
 	private float size;
 
+	public Text notification;
+
 	Transform[] positions;
 
 	void Start () {
@@ -42,6 +44,10 @@ public class RayManager : MonoBehaviour {
 		appearableMonsters = new ArrayList ();
 
 		appearableMonsters.Add (Daemon);
+
+		notification.gameObject.SetActive (false);
+
+		Debug.Log (notification.text);
 	}
 
 	// Update is called once per frame
@@ -87,6 +93,7 @@ public class RayManager : MonoBehaviour {
 
 	void AddAppearableMonster () {
 		if (Score.isGreaterThan (50) && appearableMonsters.Count == 1) {
+			notification.gameObject.SetActive (true);
 			appearableMonsters.Add (Crawler);
 		}
 	}
