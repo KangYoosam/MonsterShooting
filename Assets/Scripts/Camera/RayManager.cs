@@ -15,6 +15,7 @@ public class RayManager : MonoBehaviour {
 
 	// Monster
 	public GameObject Daemon;
+	public GameObject Crawler;
 	float monsterInterval;
 
 	// property
@@ -77,14 +78,15 @@ public class RayManager : MonoBehaviour {
 		monsterInterval = 0.0f;
 
 		Quaternion q = Quaternion.Euler(0, 0, 0);
+
 		int number = Random.Range (0, positions.Length);
 
-		GameObject monster = Instantiate (Daemon,
+		GameObject monster = Instantiate (Crawler,
 			positions[number].transform.position,
 			q
 		) as GameObject;
 
-		monster.transform.LookAt (diveCamera.transform);
+		monster.transform.LookAt (diveCamera.transform.position);
 
 		// MoveToCameraScriptのtargetプロパティにmonsterをアタッチ。
 		MonsterScript monsterScript = monster.GetComponent<MonsterScript> ();
