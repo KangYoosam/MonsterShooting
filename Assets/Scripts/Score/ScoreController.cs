@@ -20,4 +20,12 @@ public class ScoreController : MonoBehaviour {
 	public void ScorePlus(int point) {
 		Score += point;
 	}
+
+	public int getCurrentScore () {
+		return Score;
+	}
+
+	public bool isGreaterThan (int point) {
+		return Score >= point;
+	}
 }

@@ -17,6 +17,10 @@ public class RayManager : MonoBehaviour {
 	public GameObject Daemon;
 	public GameObject Crawler;
 	float monsterInterval;
+	ArrayList appearableMonsters;
+
+	MonsterScript monsterScript;
+	ScoreController Score;
 
 	// property
 	private float gazedTime;
@@ -32,6 +36,12 @@ public class RayManager : MonoBehaviour {
 		positions = positionsWrapper.transform.GetComponentsInChildren<Transform> ()
 			.Where( c => positionsWrapper.gameObject != c.gameObject )
 			.ToArray();
+
+		Score = GameObject.Find ("MyselfEye/Dive_Camera/Gun").GetComponent<ScoreController> ();
+
+		appearableMonsters = new ArrayList ();
+
+		appearableMonsters.Add (Daemon);
 	}
 
 	// Update is called once per frame
@@ -66,10 +76,18 @@ public class RayManager : MonoBehaviour {
 			}
 		}
 
+		AddAppearableMonster ();
+
 		// モンスターを生成
 		monsterInterval += Time.deltaTime;
 		if (monsterInterval >= 2f) {
 			GenerateMonster ();
+		}
+	}
+
+	void AddAppearableMonster () {
+		if (Score.isGreaterThan (50) && appearableMonsters.Count == 1) {
+			appearableMonsters.Add (Crawler);
 		}
 	}
 
@@ -81,7 +99,9 @@ public class RayManager : MonoBehaviour {
 
 		int number = Random.Range (0, positions.Length);
 
-		GameObject monster = Instantiate (Crawler,
+		GameObject nextMonster = appearableMonsters [Random.Range (0, appearableMonsters.Count)] as GameObject;
+
+		GameObject monster = Instantiate (nextMonster,
 			positions[number].transform.position,
 			q
 		) as GameObject;
