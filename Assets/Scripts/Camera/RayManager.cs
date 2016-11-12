@@ -43,11 +43,9 @@ public class RayManager : MonoBehaviour {
 
 		appearableMonsters = new ArrayList ();
 
-		appearableMonsters.Add (Daemon);
+		appearableMonsters.Add (Crawler);
 
-		notification.gameObject.SetActive (false);
-
-		Debug.Log (notification.text);
+		hideNotification ();
 	}
 
 	// Update is called once per frame
@@ -94,8 +92,13 @@ public class RayManager : MonoBehaviour {
 	void AddAppearableMonster () {
 		if (Score.isGreaterThan (50) && appearableMonsters.Count == 1) {
 			notification.gameObject.SetActive (true);
-			appearableMonsters.Add (Crawler);
+			Invoke ("hideNotification", 3f);
+			appearableMonsters.Add (Daemon);
 		}
+	}
+
+	void hideNotification () {
+		notification.gameObject.SetActive (false);
 	}
 
 	// モンスターを生成
