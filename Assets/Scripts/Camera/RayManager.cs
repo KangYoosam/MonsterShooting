@@ -41,19 +41,20 @@ public class RayManager : MonoBehaviour {
 		if (Physics.Raycast (ray, out hit)) {
 			reticle.transform.position = hit.point;
 
+			size = 0.2f * hit.distance;
+
 			if (hit.collider.tag == "Monster") {
 				gazedTime += Time.deltaTime;
 
-				size = 0.2f * gazedTime;
+				size = size * gazedTime;
 
 				// 発射
-				if (gazedTime >= 2.2) {
+				if (gazedTime >= 1.7) {
 					shotGunScript.Fire (hit.collider.gameObject);
 					gazedTime = 0;
 				}
 			} else {
 				gazedTime = 0;
-				size = 0.2f * hit.distance;
 			}
 
 			reticle.transform.localScale = new Vector2 (size, size);
