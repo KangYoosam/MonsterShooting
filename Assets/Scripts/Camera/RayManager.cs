@@ -20,6 +20,7 @@ public class RayManager : MonoBehaviour {
 	// property
 	private float gazedTime;
 	private bool isDead = false;
+	private float size;
 
 	Transform[] positions;
 
@@ -43,6 +44,8 @@ public class RayManager : MonoBehaviour {
 			if (hit.collider.tag == "Monster") {
 				gazedTime += Time.deltaTime;
 
+				size = 0.2f * gazedTime;
+
 				// 発射
 				if (gazedTime >= 2.2) {
 					shotGunScript.Fire (hit.collider.gameObject);
@@ -50,7 +53,10 @@ public class RayManager : MonoBehaviour {
 				}
 			} else {
 				gazedTime = 0;
+				size = 0.2f * hit.distance;
 			}
+
+			reticle.transform.localScale = new Vector2 (size, size);
 
 			// 血飛沫を表示
 			if (isDead) {
