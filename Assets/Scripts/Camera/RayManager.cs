@@ -41,7 +41,7 @@ public class RayManager : MonoBehaviour {
 		if (Physics.Raycast (ray, out hit)) {
 			reticle.transform.position = hit.point;
 
-			size = 0.2f * hit.distance;
+			size = 0.1f * hit.distance;
 
 			if (hit.collider.tag == "Monster") {
 				gazedTime += Time.deltaTime;
@@ -49,7 +49,7 @@ public class RayManager : MonoBehaviour {
 				size = size * gazedTime;
 
 				// 発射
-				if (gazedTime >= 1.7) {
+				if (gazedTime >= 1.4f) {
 					shotGunScript.Fire (hit.collider.gameObject);
 					gazedTime = 0;
 				}
@@ -67,7 +67,7 @@ public class RayManager : MonoBehaviour {
 
 		// モンスターを生成
 		monsterInterval += Time.deltaTime;
-		if (monsterInterval >= 1f) {
+		if (monsterInterval >= 2f) {
 			GenerateMonster ();
 		}
 	}
