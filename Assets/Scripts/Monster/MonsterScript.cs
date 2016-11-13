@@ -7,6 +7,8 @@ public class MonsterScript : MonoBehaviour {
 
 	public int score;
 
+	private bool isAttacked = false;
+
 	Animator animator;
 	AnimatorStateInfo animInfo;
 
@@ -27,8 +29,12 @@ public class MonsterScript : MonoBehaviour {
 		if (coll.tag == "Player") {
 			agent.Stop ();
 
-			if (this.name == "Minotaur") {
-				animator.Play ("Jump");
+			if (this.name == "Minotaur(Clone)") {
+				if (! isAttacked) {
+					animator.Play ("Jump");
+					isAttacked = true;
+				}
+
 			} else {
 				animator.Play ("attack");
 			}
