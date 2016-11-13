@@ -96,7 +96,7 @@ public class RayManager : MonoBehaviour {
 			Invoke ("hideNotification", 3f);
 			appearableMonsters.Add (Daemon);
 		}
-		if (Score.isGreaterThan (10) && appearableMonsters.Count == 1) {
+		if (Score.isGreaterThan (100) && appearableMonsters.Count == 2) {
 			notification.gameObject.SetActive (true);
 			Invoke ("hideNotification", 3f);
 			appearableMonsters.Add (Minotaur);
@@ -121,8 +121,6 @@ public class RayManager : MonoBehaviour {
 			positions[number].transform.position,
 			q
 		) as GameObject;
-
-		monster.transform.LookAt (diveCamera.transform.position);
 
 		// MoveToCameraScriptのtargetプロパティにmonsterをアタッチ。
 		MonsterScript monsterScript = monster.GetComponent<MonsterScript> ();

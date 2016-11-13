@@ -188,7 +188,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.33962265
+        functionName: PlayerDamaged
+        data: Woops!
+        objectReferenceParameter: {fileID: 1000011714135468, guid: 36294eb1eadf94a76974911b44b41b82,
+          type: 2}
+        floatParameter: 1
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
