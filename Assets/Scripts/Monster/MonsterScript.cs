@@ -26,7 +26,11 @@ public class MonsterScript : MonoBehaviour {
 	void OnTriggerEnter (Collider coll) {
 		if (coll.tag == "Player") {
 			agent.Stop ();
-			animator.Play ("attack");
+			if (this.name == "Minotaur(Clone)") {
+				animator.Play ("Jump");
+			} else {
+				animator.Play ("attack");
+			}
 		}
 	}
 

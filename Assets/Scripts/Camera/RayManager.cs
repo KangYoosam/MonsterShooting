@@ -16,6 +16,7 @@ public class RayManager : MonoBehaviour {
 	// Monster
 	public GameObject Daemon;
 	public GameObject Crawler;
+	public GameObject Minotaur;
 	float monsterInterval;
 	ArrayList appearableMonsters;
 
@@ -94,6 +95,11 @@ public class RayManager : MonoBehaviour {
 			notification.gameObject.SetActive (true);
 			Invoke ("hideNotification", 3f);
 			appearableMonsters.Add (Daemon);
+		}
+		if (Score.isGreaterThan (10) && appearableMonsters.Count == 1) {
+			notification.gameObject.SetActive (true);
+			Invoke ("hideNotification", 3f);
+			appearableMonsters.Add (Minotaur);
 		}
 	}
 
